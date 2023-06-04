@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "private": "true",
-  "scripts": {
+  "private": "false",
+  "homepage": "https://j03b1d3n.github.io/libraryWebpack/",
+    "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "watch": "webpack --watch",
-    "start": "webpack serve --open"
+    "start": "webpack serve --open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +19,7 @@
   "devDependencies": {
     "animate.css": "^4.1.1",
     "css-loader": "^6.8.1",
+    "gh-pages": "^5.0.0",
     "style-loader": "^3.3.3",
     "uniqid": "^5.4.0",
     "webpack": "^5.85.0",
