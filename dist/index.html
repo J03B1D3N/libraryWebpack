@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Library</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         </style>
 </head>
@@ -14,12 +13,12 @@
         <div class="headerTitle">
             The Library
         </div>
-        <a id="addBook" class="addBook" href="" onclick="event.preventDefault(); openForm();">+ ADD BOOK</a>
+        <a id="addBook" class="addBook" href="">+ ADD BOOK</a>
         
     </header>
     
     <main>
-        <form id="form1" class="form" action="get" onsubmit="event.preventDefault(); addInfo(); closeForm1(); createCard();">
+        <form id="form1" class="form" action="get" >
         
             <div class="inputTable">
                 <div class="inputTitle">Information</div>
@@ -109,6 +108,6 @@
         <p>For more information on Harvard refferencing visit this <a href="https://libguides.scu.edu.au/harvard/books"> Harvard Referencing Guide</a>.</p>
     </nav>
     <footer> Copyright @ Justas Lapiene 2022</footer>
-    <script type="module" src="script.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>

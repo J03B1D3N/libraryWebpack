@@ -1,8 +1,9 @@
 import {initializeApp} from "firebase/app"
 import {GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, signOut} from "firebase/auth"
-import {getFirestore, collection, getDoc, getDocs, setDoc, doc, deleteDoc, updateDoc, arrayUnion} from "firebase/firestore"
+import {getFirestore, collection, getDoc, getDocs, setDoc, doc, deleteDoc} from "firebase/firestore"
 import uniqid from "uniqid"
-// import './styles.css';
+import 'animate.css';
+import './styles.css';
 
 let userId = ""
 let myLibrary = [];
@@ -37,6 +38,8 @@ async function getFirebaseData(id) {
   const docSnap = await getDoc(docRef);
   const data = docSnap.data()
   myLibrary = JSON.parse(data.Books)
+  console.log(data)
+  // myLibrary = JSON.parse(data.Books)
   createCard();
 
   }
@@ -95,18 +98,11 @@ signOutBtn.addEventListener('click', () => {
       while (books.firstChild) {
         books.removeChild(books.firstChild);
     }
+    myLibrary = []
+    userId = ""
 })
 
-async function createUserDataInFirebase(uid) {
-  try {
-    await setDoc(doc(db, "Users", uid), {
-      Books : []
-    })
-  }
-  catch {
 
-  }
-}
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -122,6 +118,8 @@ onAuthStateChanged(auth, (user) => {
     } else {
       // User is signed out
       // ...
+      addBook.style.display = "none"
+
       loggedIn.style.display = "none"
       signInBtn.style.display = "block"
       console.log("logged out")
@@ -130,6 +128,7 @@ onAuthStateChanged(auth, (user) => {
   });
 
 function changeLoginStatus(user) {
+  addBook.style.display = "block"
   signInBtn.style.background = user.photoUrl
       signInBtn.style.display = 'none'
       userPhoto.src = user.photoURL
@@ -225,8 +224,8 @@ async function addInfo () {
   const newBook1 = new createBook1(inputTitle1.value, inputAuthor1.value, inputYearOfPub1.value, inputEdition1.value, inputPublisher1.value, inputPlaceOfPub1.value, id)
 
   addBookToLibrary(newBook1)
-  await updateDoc(doc(db, "Users", userId), {
-    Books: arrayUnion(JSON.stringify(myLibrary))
+  await setDoc(doc(db, "Users", userId), {
+    Books: JSON.stringify(myLibrary)
   });
 }
     
@@ -238,7 +237,7 @@ function createCard() {
 
     for(let i = 0; i < myLibrary.length; i++) {
     const book = document.createElement('div')
-    book.classList.add("book","animate__animated", "animate__backInLeft" )
+    book.classList.add("book")
     book.setAttribute('data-number', `${[i]}`)
     book.setAttribute('data-id', `${[myLibrary[i].id]}`)
  
@@ -319,10 +318,20 @@ function createCard() {
 async function deleteCard(event){
 
 const deletebtn = event.currentTarget.parentNode.parentNode
-deletebtn.remove()
+deletebtn.classList.add("animate__animated", "animate__fadeOutLeft")
+
 myLibrary.splice(deletebtn.dataset.number, 1)
-await deleteDoc(doc(db, "Books", deletebtn.dataset.id))
-createCard()
+await setDoc(doc(db, "Users", userId), {
+  Books: JSON.stringify(myLibrary)
+});
+deletebtn.addEventListener('animationend', () => {
+
+  createCard()
+})
+deletebtn.addEventListener('animationcancel', () => {
+
+  createCard()
+})
 }
 
 
@@ -385,6 +394,8 @@ function openEdit(event) {
     let bookPlaceOfPub = target.querySelector('.placeOfPublication').textContent;
  
      form2.style.display = "block";
+     inputTitle2.focus()
+     inputTitle2.select()
      inputTitle2.value = bookTitle;
      inputAuthor2.value = bookAuthor;
      inputYearOfPub2.value = bookYearOfPub;
@@ -402,16 +413,10 @@ function openEdit(event) {
         closeEditForm();
       },{once: true})
  }
- async function editInfo(id) {
-  await setDoc(doc(db, "Books", id), {
-    title: inputTitle2.value,
-    author: inputAuthor2.value,
-    year: inputYearOfPub2.value,
-    edition: inputEdition2.value,
-    publisher: inputPublisher2.value,
-    place: inputPlaceOfPub2.value,
-    id:id
-  })
+ async function editInfo() {
+  await setDoc(doc(db, "Users", userId), {
+    Books: JSON.stringify(myLibrary)
+  });
  }
  function closeEditForm() {
     form2.style.display = 'none'

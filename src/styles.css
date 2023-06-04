@@ -30,7 +30,6 @@ header {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    transition: 0.1s;
 }
 .signOut {
     cursor: pointer;
@@ -139,6 +138,7 @@ a {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    --animate-duration: 0.2s;
 }
 .title {
     overflow-wrap: break-word;
