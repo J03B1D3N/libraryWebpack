@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Library</title>
+    <style>
+        </style>
+</head>
+<body>
+    <header>
+        <div class="headerTitle">
+            The Library
+        </div>
+        <a id="addBook" class="addBook" href="" >+ ADD BOOK</a>
+        
+    </header>
+    
+    <main>
+        <form id="form1" class="form" action="get" >
+        
+            <div class="inputTable">
+                <div class="inputTitle">Information</div>
+
+
+                <div class="title input">
+                    <label for="title">Title:</label>
+                    <input type="text"  name="title" id="title1" >
+                </div>
+                <div class="author input">
+                    <label for="author">Author:    (For the last name use only the first letter)</label>
+                    <input type="text" name="author" id="author1" >
+                </div>
+                
+                <div class="yearOfPublication input">
+                    <label for="yearOfPublication">Year of Publication:</label>
+                    <input type="text" name="yearOfPublication" id="yearOfPublication1" >
+                    
+                </div>
+                 
+                <div class="edition input">
+                    <label for="edition">Edition:</label>
+                    <input type="text" name="edition" id="edition1" >
+                </div>
+                
+                <div class="publisher input">
+                    <label for="publisher">Publisher:</label>
+                    <input type="text" name="publisher" id="publisher1" >
+                </div>
+
+                <div class="placeOfPublication input">
+                    <label for="placeOfPublication">Place of Publication:</label>
+                    <input type="text" name="placeOfPublication" id="placeOfPublication1">
+                </div>
+                <button class="submit" type="sumbit">Submit</button>
+                <button id="exit1"></button>
+            </div>
+            
+        </form>
+        <form id="form2" class="form" action="get">
+        
+            <div class="inputTable">
+                <div class="inputTitle">Information</div>
+
+
+                <div class="title input">
+                    <label for="title">Title:</label>
+                    <input type="text"  name="title" id="title2" >
+                </div>
+                <div class="author input">
+                    <label for="author">Author:    (For the last name use only the first letter)</label>
+                    <input type="text" name="author" id="author2" >
+                </div>
+                
+                <div class="yearOfPublication input">
+                    <label for="yearOfPublication">Year of Publication:</label>
+                    <input type="text" name="yearOfPublication" id="yearOfPublication2" >
+                    
+                </div>
+                 
+                <div class="edition input">
+                    <label for="edition">Edition:</label>
+                    <input type="text" name="edition" id="edition2" >
+                </div>
+                
+                <div class="publisher input">
+                    <label for="publisher">Publisher:</label>
+                    <input type="text" name="publisher" id="publisher2" >
+                </div>
+
+                <div class="placeOfPublication input">
+                    <label for="placeOfPublication">Place of Publication:</label>
+                    <input type="text" name="placeOfPublication" id="placeOfPublication2">
+                </div>
+                <button class="submit" type="sumbit">Submit</button>
+                <button id="exit2"></button>
+            </div>
+            
+        </form>
+        <div id="books">
+        </div>
+    </main>
+    <nav>
+        <p>This website is designed to store and then easily access and copy your BOOKS in HARVARD refference style for your bibliography.</p>
+        <p>ALL inputs are case-sensitive therefore input them exactly as you want them to be copied.</p>
+        <p>If the input field is left blank, it will not be copied to your clipbar.</p>
+        <p>For more information on Harvard refferencing visit this <a href="https://libguides.scu.edu.au/harvard/books"> Harvard Referencing Guide</a>.</p>
+    </nav>
+    <footer> Copyright @ Justas Lapiene 2022</footer>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
