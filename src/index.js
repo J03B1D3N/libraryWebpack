@@ -360,13 +360,14 @@ function citeThis(event) {
    }
     try {
     
-    const blobInput = new Blob([harvardRefference], {type: 'text/html'});
-    const clipboardItemInput = new ClipboardItem({'text/html' : blobInput});
-    navigator.clipboard.write([clipboardItemInput]);
+      const blob = new Blob([harvardRefference], { type: 'text/html' });
+      const clipboardItem = new ClipboardItem({ 'text/html': blob });
+      navigator.clipboard.write([clipboardItem])
+    alert('Copied!')
   } catch(e) {
     alert('copy failed!')
     console.log(e);
-  } alert('Copied!')
+  }
 }
 
 class createBook2 {
